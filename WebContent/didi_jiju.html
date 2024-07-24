@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Flowers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="home.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        main {
+            padding: 2em;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2em;
+            flex-wrap: wrap;
+            background-color: rgb(241, 241, 241);
+            padding: 0.1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(254, 253, 253, 0.1);
+        }
+
+        .filter-group {
+            margin: 1em 0;
+        }
+
+        .filter-group label {
+            margin-right: 0.5em;
+        }
+
+        #cakes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 2em;
+        }
+
+        .cake {
+            background-color: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+
+        .cake img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .cake h2 {
+            font-size: 1em;
+            margin: 0.5em 0;
+            color: gray;
+            font-weight: normal;
+        }
+
+        .cake .price {
+            font-size: 1em;
+            color: green;
+            font-weight: normal;
+        }
+
+        .cake:hover {
+            padding: 1em;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="#">Help</a>
+        <a href="#">Currency - INR</a>
+        <a href="#">Corporate Gifts</a>
+        <a href="#">Partner With Us</a>
+        <a href="#">Track Order</a>
+        </div>
+        <div class="header">
+ 
+            <img src="logo.png" alt="Logo">
+            <div class="search-bar">
+            <input type="text" placeholder="Search for gifts, flowers, cakes...">
+            <button>Search</button>
+            </div>
+            <button id="delivery-location">Check delivery location</button>
+            <span class="add_sec"></span>
+        
+            <!-- Modal structure -->
+            <div id="locationModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Enter Your Location</h2>
+                    <input type="text" id="locationInput" placeholder="Enter your location">
+                    <button id="saveLocation">Save</button>
+                </div>
+            </div>
+            <div class="icons">
+                <a href="#">
+                    <img src="https://i.pinimg.com/474x/ea/ba/20/eaba2055f30e808190e3fb42f92f79dc.jpg" alt="Wishlist">
+                </a>
+                <a href="login.html">
+                    <img src="https://i.pinimg.com/474x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg" alt="Sign In">
+                </a>
+                <a href="cart_page.html">
+                    <img src="https://i.pinimg.com/474x/65/d6/dd/65d6ddc76d5ddbf5788ba76205b8bec0.jpg" alt="Cart">
+                </a>
+            </div>
+            
+            </div>
+            <div class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Birthday</a>
+            <a href="#">Combos</a>
+            <div class="anniversary">
+            <a href="#">Anniversary</a>
+            <div class="dropdown">
+            <div class="dropdown-column">
+            <h4>Gift By Type</h4>
+            <a href="all_anniversary_gifts.html">All Anniversary Gifts</a>
+            <a href="best_seller.html">Best Seller Anniversary</a>
+            <a href="anniversary_photo cake.html">Anniversary Photo Cake</a>
+            <a href="same_day_delivery.html">Same Day Delivery</a>
+            <a href="ballon_decoration.html">Balloon Decorations</a>
+            <a href="anniversary_new_arrival.html">Anniversary New Arrival</a>
+            <a href="romantic_couple_gifts.html">Romantic & Couple Gifts</a>
+            </div>
+            <div class="dropdown-column">
+            <h4>Gift By Collection</h4>
+            <a href="anniversary_cakes.html">Anniversary Cakes</a>
+            <a href="anniversary_flowers.html">Anniversary Flowers</a>
+            <a href="anniversary_combos.html">Anniversary Combos</a>
+            <a href="personalized_anniversary_gifts.html">Personalised Anniversary Gifts</a>
+            <a href="first_anniversary_cakes.html">First Anniversary Cakes</a>
+            <a href="25_anniversary_cakes.html">25th Anniversary Cakes</a>
+            <a href="#">Anniversary Chocolates</a>
+            </div>
+            <div class="dropdown-column">
+            <h4>By Relation</h4>
+            <a href="wife.html">Wife</a>
+            <a href="husband.html">Husband</a>
+            <a href="parents.html">Parents</a>
+            <a href="bhaiya_bhabhi.html">Bhaiya Bhabhi</a>
+            <a href="didi_jiju.html">Didi Jiju</a>
+            <a href="grand_parents.html">Grand Parents</a>
+            </div>
+            
+            </div>
+            </div>
+            <a href="#">Express</a>
+            <a href="#">Cakes</a>
+            <a href="#">Flowers</a>
+            <a href="#">Plants</a>
+            <a href="#">Gifts</a>
+            <a href="#">Personalised Gifts</a>
+            <a href="#">Chocolates</a>
+            <a href="#">Combos</a>
+            <a href="#">Birthday</a>
+            <a href="#">Occasions</a>
+            </div>
+           
+           
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="loginButton">Login</button>
+            </div>
+            <div class="switch-modal">
+                Don't have an account? <a id="showSignUp">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign-Up Modal -->
+    <div id="signUpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <div class="form-group">
+                <label for="signUpEmail">Email:</label>
+                <input type="email" id="signUpEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="signUpPassword">Password:</label>
+                <input type="password" id="signUpPassword" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="signUpButton">Sign Up</button>
+            </div>
+            <div class="switch-modal">
+                Already have an account? <a id="showLogin">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Delivery Location Modal
+        var locationModal = document.getElementById("locationModal");
+        var locationBtn = document.getElementById("delivery-location");
+        var closeLocationModal = locationModal.getElementsByClassName("close")[0];
+        var saveLocationBtn = document.getElementById("saveLocation");
+        var locationInput = document.getElementById("locationInput");
+        var addSec = document.querySelector(".add_sec");
+
+        locationBtn.addEventListener("click", function() {
+            locationModal.style.display = "block";
+        });
+
+        closeLocationModal.addEventListener("click", function() {
+            locationModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == locationModal) {
+                locationModal.style.display = "none";
+            }
+        });
+
+        saveLocationBtn.addEventListener("click", function() {
+            var location = locationInput.value;
+            if (location) {
+                addSec.textContent = location;
+                locationModal.style.display = "none";
+            }
+        });
+
+        // Login and Sign-Up Modals
+        var loginModal = document.getElementById("loginModal");
+        var signUpModal = document.getElementById("signUpModal");
+        var loginIcon = document.getElementById("login-icon");
+        var closeLoginModal = loginModal.getElementsByClassName("close")[0];
+        var closeSignUpModal = signUpModal.getElementsByClassName("close")[0];
+        var showSignUpLink = document.getElementById("showSignUp");
+        var showLoginLink = document.getElementById("showLogin");
+
+        loginIcon.addEventListener("click", function() {
+            loginModal.style.display = "block";
+        });
+
+        closeLoginModal.addEventListener("click", function() {
+            loginModal.style.display = "none";
+        });
+
+        closeSignUpModal.addEventListener("click", function() {
+            signUpModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == signUpModal) {
+                signUpModal.style.display = "none";
+            }
+        });
+
+        showSignUpLink.addEventListener("click", function() {
+            loginModal.style.display = "none";
+            signUpModal.style.display = "block";
+        });
+
+        showLoginLink.addEventListener("click", function() {
+            signUpModal.style.display = "none";
+            loginModal.style.display = "block";
+        });
+    </script>
+        
+            <div class="anniversary">
+                <div class="anniversary border">
+                    <!-- <p>ANNIVERSARY</p> -->
+                    <div class="dropdown">
+                        <a href="#">ANNIVERSARY</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-column">
+                                <h4>Gifts By Collection</h4>
+                                <a href="all_anniversary_gifts.html">All Anniversary Gifts</a>
+                                <a href="best_seller.html">Best Seller Anniversary</a>
+                                <a href="anniversary_photo cake.html">Anniversary Photo Cake</a>
+                                <a href="same_day_delivery.html">Same Day Delivery</a>
+                                <a href="ballon_decoration.html">Balloon Decorations</a>
+                                <a href="anniversary_new_arrival.html">Anniversary New Arrival</a>
+                                <a href="romantic_couple_gifts.html">Romantic & Couple Gifts</a>
+                            </div>
+                            <div class="dropdown-column">
+                                <h4>Gifts By Collection </h4>
+                                <a href="anniversary_cakes.html">Anniversary Cakes</a>
+                                <a href="anniversary_flowers.html">Anniversary Flowers</a>
+                                <a href="anniversary_combos.html">Anniversary Combos</a>
+                                <div class="container">
+                                    <a href="personalized_anniversary_gifts.html" id="personalized-gifts-link" class="btn">Personalized Anniversary Gifts</a>
+                                </div>
+                                <script>
+                                    document.getElementById('personalized-gifts-link').addEventListener('click', function(event) {
+                                        event.preventDefault(); // Prevent the default action (in this case, following the link)
+                            
+                                        // Redirect to the personalized anniversary gifts page
+                                        window.location.href = 'personalizedanniversary.html'; // Replace with your actual URL
+                                    });
+                                </script>
+                                <div class="container">
+                                    <a href="first_anniversary_cakes.html" id="First-Anniversary-Cakes-link" class="btn">First Anniversary Cakes</a>
+                                </div>
+                                <script>
+                                    document.getElementById('First-Anniversary-Cakes-link').addEventListener('click', function(event) {
+                                        event.preventDefault(); // Prevent the default action (in this case, following the link)
+                            
+                                        // Redirect to the personalized anniversary gifts page
+                                        window.location.href = 'First Anniversary Cakes.html'; // Replace with your actual URL
+                                    });
+                                </script>
+                                <a href="25_anniversary_cakes.html">25th Anniversary Cakes</a>
+                                <a href="anniversary_chocolates.html">Anniversary Chocolates</a>
+                                
+                            </div>
+                            <div class="dropdown-column">
+                                <h4>By Relation </h4>
+                                <a href="wife.html">Wife</a>
+                                <a href="husband.html">Husband</a>
+                                <a href="parents.html">Parents</a>
+                                <a href="bhaiya_bhabhi.html">Bhaiya Bhabhi</a>
+                                <a href="didi_jiju.html">Didi Jiju</a>
+                                <a href="grand_parents.html">Grand Parents</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            </div>
+            <div class="gif-container">
+                <img src="delivery.gif" alt="delivery">
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <div id="filters">
+            <div class="filter-group">
+                <label for="sort">Sort By:</label>
+                <select id="sort">
+                    <option value="popularity">Popularity</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="price-range">Price Range:</label>
+                <select id="price-range">
+                    <option value="all">All</option>
+                    <option value="0-500">0 - 500</option>
+                    <option value="500-1000">500 - 1000</option>
+                    <option value="1000-2000">1000 - 2000</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="categories">Categories:</label>
+                <select id="categories">
+                    <option value="all">All</option>
+                    <option value="roses">Roses</option>
+                    <option value="lilies">Lilies</option>
+                    <option value="tulips">Tulips</option>
+                </select>
+            </div>
+        </div>
+        <div id="cakes">
+            <a href="didi1.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2021/10/54307.jpeg?dpr=1&w=400" alt="Anniversary Cake 1">
+                <h2>Hello Sunshine Mixed Bouquet</h2>
+                <p class="price">₹1049</p>
+            </a>
+            <a href="didi2.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2014/10/48193.jpeg?dpr=1&w=400" alt="Anniversary Cake 2">
+                <h2>Love Proposal Photo Frame</h2>
+                <p class="price">₹599</p>
+            </a>
+            <a href="didi3.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2022/3/58253.jpeg?dpr=1&w=400" alt="Anniversary Cake 3">
+                <h2>Anniversary Spotify Photo Cake</h2>
+                <p class="price">₹1099</p>
+            </a>
+            <a href="didi4.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2021/10/54564.jpeg?dpr=1&w=400" alt="Anniversary Cake 4">
+                <h2>Red Sprayed Bouquet</h2>
+                <p class="price">₹749</p>
+            </a>
+            <a href="didi5.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2014/8/44065.jpeg?dpr=1&w=400" alt="Anniversary Cake 5">
+                <h2>Lovely Affection</h2>
+                <p class="price">₹649</p>
+            </a>
+            <a href="cake8_cart.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2014/8/42273.jpeg?dpr=1&w=400" alt="Anniversary Cake 6">
+                <h2>Tempting Red Velvet Anniversary Cake</h2>
+                <p class="price">₹949</p>
+            </a>
+            <a href="didi7.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2023/1/81690.jpeg?dpr=1&w=400" alt="Anniversary Cake 7">
+                <h2>Little Hearts Hoya Plants</h2>
+                <p class="price">₹949</p>
+            </a>
+            <a href="didi8.html" class="cake">
+                <img src="https://assets.winni.in/product/primary/2022/6/61355.jpeg?dpr=1&w=400" alt="Anniversary Cake 8">
+                <h2>Anniversary Photo Cushion</h2>
+                <p class="price">₹599</p>
+            </a>
+            
+        </div>
+    </main>
+</body>
+</html>

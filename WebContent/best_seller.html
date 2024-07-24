@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestSeller</title>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="home.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        main {
+            padding: 2em;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2em;
+            flex-wrap: wrap;
+            background-color: rgb(241, 241, 241);
+            padding: 0.1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(254, 253, 253, 0.1);
+        }
+
+        .filter-group {
+            margin: 1em 0;
+        }
+
+        .filter-group label {
+            margin-right: 0.5em;
+        }
+
+        #cakes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 2em;
+        }
+
+        .cake {
+            background-color: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: padding 0.3s ease-in-out, background-color
+0.3s ease-in-out;
+        }
+
+        .cake img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .cake h2 {
+            font-size: 1em;
+            margin: 0.5em 0;
+            color: gray;
+            font-weight: normal;
+        }
+
+        .cake .price {
+            font-size: 1em;
+            color: green;
+            font-weight: normal;
+        }
+
+
+        .cake:hover {
+            padding: 1em;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="#">Help</a>
+        <a href="#">Currency - INR</a>
+        <a href="#">Corporate Gifts</a>
+        <a href="#">Partner With Us</a>
+        <a href="#">Track Order</a>
+        </div>
+        <div class="header">
+ 
+            <img src="data:image/png;base64,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" alt="Logo">
+            <div class="search-bar">
+            <input type="text" placeholder="Search for gifts, flowers, cakes...">
+            <button>Search</button>
+            </div>
+            <button id="delivery-location">Check delivery location</button>
+            <span class="add_sec"></span>
+        
+            <!-- Modal structure -->
+            <div id="locationModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Enter Your Location</h2>
+                    <input type="text" id="locationInput" placeholder="Enter your location">
+                    <button id="saveLocation">Save</button>
+                </div>
+            </div>
+            <div class="icons">
+                <a href="#">
+                    <img src="https://i.pinimg.com/474x/ea/ba/20/eaba2055f30e808190e3fb42f92f79dc.jpg" alt="Wishlist">
+                </a>
+                <a href="login.html">
+                    <img src="https://i.pinimg.com/474x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg" alt="Sign In">
+                </a>
+                <a href="cart_page.html">
+                    <img src="https://i.pinimg.com/474x/65/d6/dd/65d6ddc76d5ddbf5788ba76205b8bec0.jpg" alt="Cart">
+                </a>
+            </div>
+            
+            </div>
+            <div class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Birthday</a>
+            <a href="#">Combos</a>
+            <div class="anniversary">
+            <a href="#">Anniversary</a>
+            <div class="dropdown">
+            <div class="dropdown-column">
+            <h4>Gift By Type</h4>
+            <a href="all_anniversary_gifts.html">All Anniversary Gifts</a>
+            <a href="best_seller.html">Best Seller Anniversary</a>
+            <a href="anniversary_photo cake.html">Anniversary Photo Cake</a>
+            <a href="same_day_delivery.html">Same Day Delivery</a>
+            <a href="ballon_decoration.html">Balloon Decorations</a>
+            <a href="anniversary_new_arrival.html">Anniversary New Arrival</a>
+            <a href="romantic_couple_gifts.html">Romantic & Couple Gifts</a>
+            </div>
+            <div class="dropdown-column">
+            <h4>Gift By Collection</h4>
+            <a href="anniversary_cakes.html">Anniversary Cakes</a>
+            <a href="anniversary_flowers.html">Anniversary Flowers</a>
+            <a href="anniversary_combos.html">Anniversary Combos</a>
+            <a href="personalized_anniversary_gifts.html">Personalised Anniversary Gifts</a>
+            <a href="first_anniversary_cakes.html">First Anniversary Cakes</a>
+            <a href="25_anniversary_cakes.html">25th Anniversary Cakes</a>
+            <a href="#">Anniversary Chocolates</a>
+            </div>
+            <div class="dropdown-column">
+            <h4>By Relation</h4>
+            <a href="wife.html">Wife</a>
+            <a href="husband.html">Husband</a>
+            <a href="parents.html">Parents</a>
+            <a href="bhaiya_bhabhi.html">Bhaiya Bhabhi</a>
+            <a href="didi_jiju.html">Didi Jiju</a>
+            <a href="grand_parents.html">Grand Parents</a>
+            </div>
+            
+            </div>
+            </div>
+            <a href="#">Express</a>
+            <a href="#">Cakes</a>
+            <a href="#">Flowers</a>
+            <a href="#">Plants</a>
+            <a href="#">Gifts</a>
+            <a href="#">Personalised Gifts</a>
+            <a href="#">Chocolates</a>
+            <a href="#">Combos</a>
+            <a href="#">Birthday</a>
+            <a href="#">Occasions</a>
+            </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Enter
+your email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword"
+placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="loginButton">Login</button>
+            </div>
+            <div class="switch-modal">
+                Don't have an account? <a id="showSignUp">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign-Up Modal -->
+    <div id="signUpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <div class="form-group">
+                <label for="signUpEmail">Email:</label>
+                <input type="email" id="signUpEmail"
+placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="signUpPassword">Password:</label>
+                <input type="password" id="signUpPassword"
+placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="signUpButton">Sign Up</button>
+            </div>
+            <div class="switch-modal">
+                Already have an account? <a id="showLogin">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Delivery Location Modal
+        var locationModal = document.getElementById("locationModal");
+        var locationBtn = document.getElementById("delivery-location");
+        var closeLocationModal =
+locationModal.getElementsByClassName("close")[0];
+        var saveLocationBtn = document.getElementById("saveLocation");
+        var locationInput = document.getElementById("locationInput");
+        var addSec = document.querySelector(".add_sec");
+
+        locationBtn.addEventListener("click", function() {
+            locationModal.style.display = "block";
+        });
+
+        closeLocationModal.addEventListener("click", function() {
+            locationModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == locationModal) {
+                locationModal.style.display = "none";
+            }
+        });
+
+        saveLocationBtn.addEventListener("click", function() {
+            var location = locationInput.value;
+            if (location) {
+                addSec.textContent = location;
+                locationModal.style.display = "none";
+            }
+        });
+
+        // Login and Sign-Up Modals
+        var loginModal = document.getElementById("loginModal");
+        var signUpModal = document.getElementById("signUpModal");
+        var loginIcon = document.getElementById("login-icon");
+        var closeLoginModal = loginModal.getElementsByClassName("close")[0];
+        var closeSignUpModal = signUpModal.getElementsByClassName("close")[0];
+        var showSignUpLink = document.getElementById("showSignUp");
+        var showLoginLink = document.getElementById("showLogin");
+
+        loginIcon.addEventListener("click", function() {
+            loginModal.style.display = "block";
+        });
+
+        closeLoginModal.addEventListener("click", function() {
+            loginModal.style.display = "none";
+        });
+
+        closeSignUpModal.addEventListener("click", function() {
+            signUpModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == signUpModal) {
+                signUpModal.style.display = "none";
+            }
+        });
+
+        showSignUpLink.addEventListener("click", function() {
+            loginModal.style.display = "none";
+            signUpModal.style.display = "block";
+        });
+
+        showLoginLink.addEventListener("click", function() {
+            signUpModal.style.display = "none";
+            loginModal.style.display = "block";
+        });
+    </script>
+       
+            <div class="anniversary">
+                <div class="anniversary border">
+                    <!-- <p>ANNIVERSARY</p> -->
+                    <div class="dropdown">
+                        <a href="#">ANNIVERSARY</a>
+                        <div class="dropdown-content">
+                            <div class="dropdown-column">
+                                <h4>Gifts By Collection</h4>
+                                <a href="all_anniversary_gifts.html">All Anniversary Gifts</a>
+                                <a href="best_seller.html">Best Seller Anniversary</a>
+                                <a href="anniversary_photo cake.html">Anniversary Photo Cake</a>
+                                <a href="same_day_delivery.html">Same Day Delivery</a>
+                                <a href="ballon_decoration.html">Balloon Decorations</a>
+                                <a href="anniversary_new_arrival.html">Anniversary New Arrival</a>
+                                <a href="romantic_couple_gifts.html">Romantic & Couple Gifts</a>
+                            </div>
+                            <div class="dropdown-column">
+                                <h4>Gifts By Collection </h4>
+                                <a href="anniversary_cakes.html">Anniversary Cakes</a>
+                                <a href="anniversary_flowers.html">Anniversary Flowers</a>
+                                <a href="anniversary_combos.html">Anniversary Combos</a>
+                                <div class="container">
+                                    <a href="personalized_anniversary_gifts.html"
+id="personalized-gifts-link" class="btn">Personalized Anniversary
+Gifts</a>
+                                </div>
+                                <script>
+
+document.getElementById('personalized-gifts-link').addEventListener('click',
+function(event) {
+                                        event.preventDefault(); //Prevent the default action (in this case, following the link)
+
+                                        // Redirect to thepersonalized anniversary gifts page
+                                        window.location.href ='personalizedanniversary.html'; // Replace with your actual URL
+                                    });
+                                </script>
+                                <div class="container">
+                                    <a href="first_anniversary_cakes.html"
+id="First-Anniversary-Cakes-link" class="btn">First Anniversary
+Cakes</a>
+                                </div>
+                                <script>
+
+document.getElementById('First-Anniversary-Cakes-link').addEventListener('click',
+function(event) {
+                                        event.preventDefault(); //Prevent the default action (in this case, following the link)
+
+                                        // Redirect to thepersonalized anniversary gifts page
+                                        window.location.href = 'FirstAnniversary Cakes.html'; // Replace with your actual URL
+                                    });
+                                </script>
+                                <a href="25_anniversary_cakes.html">25th Anniversary Cakes</a>
+                                <a href="anniversary_chocolates.html">Anniversary Chocolates</a>
+                            
+                            </div>
+                            <div class="dropdown-column">
+                                <h4>By Relation</h4>
+                                
+                                <a href="wife.html">Wife</a>
+                                <a href="husband.html">Husband</a>
+                                <a href="parents.html">Parents</a>
+                                <a href="bhaiya_bhabhi.html">Bhaiya Bhabhi</a>
+                                <a href="didi_jiju.html">Didi Jiju</a>
+                                <a href="grand_parents.html">Grand Parents</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+            </div>
+            <div class="gif-container">
+                <img src="delivery.gif" alt="delivery">
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <div id="filters">
+            <div class="filter-group">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="name">Name</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="price-filter">Filter by price:</label>
+                <select id="price-filter">
+                    <option value="all">All</option>
+                    <option value="0-500">Under 500</option>
+                    <option value="500-800">500 - 800</option>
+                    <option value="900-1100">Above 900</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="delivery-date">Delivery date:</label>
+                <input type="date" id="delivery-date">
+            </div>
+        </div>
+        <section id="cakes">
+            <!-- Cake items will be dynamically inserted here -->
+        </section>
+    </main>
+    <script>
+        const cakes = [
+            {
+                name: "Toothsome Chocolate Cake",
+                image:
+"https://assets.winni.in/product/primary/2014/8/37740.jpeg?dpr=1&w=400",
+                price: 579,
+                link: "best1.html",
+                availableDates: ["2024-06-22", "2024-06-23", "2024-06-25"]
+            },
+            {
+                name: "Anniversary Spotify Cushion",
+                image:
+"https://assets.winni.in/product/primary/2022/3/58214.jpeg?dpr=1&w=400",
+                price: 629,
+                link: "best2.html",
+                availableDates: ["2024-06-21", "2024-06-23", "2024-06-24"]
+            },
+            {
+                name: "2D Heart Keychain Small",
+                image:
+"https://assets.winni.in/product/primary/2023/2/83065.jpeg?dpr=1&w=400",
+                price: 1309,
+                link: "best3.html",
+                availableDates: ["2024-06-22", "2024-06-24", "2024-06-26"]
+            },
+            {
+                name: "10 Red Rose",
+                image:
+"https://assets.winni.in/product/primary/2014/8/36746.jpeg?dpr=1&w=400",
+                price: 1099,
+                link: "best8.html",
+                availableDates: ["2024-06-21", "2024-06-23", "2024-06-25"]
+            },
+            {
+                name: "Heart Pendants",
+                image:
+"https://assets.winni.in/product/primary/2014/10/48556.jpeg?dpr=1&w=400",
+                price: 1000,
+                link: "best5.html",
+                availableDates: ["2024-06-22", "2024-06-23", "2024-06-24"]
+            },
+            {
+                name: "Couple Goal Cakes",
+                image:
+"https://assets.winni.in/product/primary/2014/8/42971.jpeg?dpr=1&w=400",
+                price: 350,
+                link: "best6.html",
+                availableDates: ["2024-06-21", "2024-06-24", "2024-06-25"]
+            },
+            {
+                name: "Personalized  Led Hologram Lamp",
+                image:
+"https://assets.winni.in/product/primary/2022/2/57892.jpeg?dpr=1&w=400",
+                price: 1500,
+                link: "r5.html",
+                availableDates: ["2024-06-23", "2024-06-24", "2024-06-26"]
+            },
+            {
+                name: "Dairy Milk Chocolate Basket",
+                image:
+"https://assets.winni.in/product/primary/2014/10/49715.jpeg?dpr=1&w=400",
+                price: 659,
+                link: "best4.html",
+
+                availableDates: ["2024-06-21", "2024-06-25", "2024-06-26"]
+            },
+        ];
+
+        const cakesContainer = document.getElementById('cakes');
+        const sortSelect = document.getElementById('sort');
+        const priceFilterSelect = document.getElementById('price-filter');
+        const deliveryDateInput = document.getElementById('delivery-date');
+
+        function displayCakes(filteredCakes) {
+            cakesContainer.innerHTML = '';
+            filteredCakes.forEach(cake => {
+                const cakeElement = document.createElement('a');
+                cakeElement.classList.add('cake');
+                cakeElement.href = cake.link;
+                cakeElement.target = "_blank";
+
+                cakeElement.innerHTML = `
+                    <img src="${cake.image}" alt="${cake.name}">
+                    <h2>${cake.name}</h2>
+                    <div class="price-rating">
+                        <div class="price">₹${cake.price.toFixed(2)}</div>
+
+                    </div>
+                `;
+
+                cakesContainer.appendChild(cakeElement);
+            });
+        }
+
+        function sortCakes(cakes, criteria) {
+            return cakes.slice().sort((a, b) => {
+                if (criteria === 'name') {
+                    return a.name.localeCompare(b.name);
+                } else if (criteria === 'price-asc') {
+                    return a.price - b.price;
+                } else if (criteria === 'price-desc') {
+                    return b.price - a.price;
+                }
+                return 0;
+            });
+        }
+
+        function filterCakes(cakes, priceRange) {
+            if (priceRange === '0-500') {
+                return cakes.filter(cake => cake.price < 500);
+            } else if (priceRange === '500-800') {
+                return cakes.filter(cake => cake.price >= 500 &&
+cake.price <= 800);
+            } else if (priceRange === '900-1100') {
+                return cakes.filter(cake => cake.price > 900);
+            }
+            return cakes;
+        }
+
+        function filterByDate(cakes, selectedDate) {
+            if (!selectedDate) return cakes;
+            return cakes.filter(cake =>
+cake.availableDates.includes(selectedDate));
+        }
+
+        function updateCakes() {
+            const sortCriteria = sortSelect.value;
+            const priceFilter = priceFilterSelect.value;
+            const selectedDate = deliveryDateInput.value;
+
+            let sortedCakes = sortCakes(cakes, sortCriteria);
+            let filteredCakes = filterCakes(sortedCakes, priceFilter);
+            filteredCakes = filterByDate(filteredCakes, selectedDate);
+
+            displayCakes(filteredCakes);
+        }
+
+        sortSelect.addEventListener('change', updateCakes);
+        priceFilterSelect.addEventListener('change', updateCakes);
+        deliveryDateInput.addEventListener('change', updateCakes);
+
+        // Initial display
+        displayCakes(cakes);
+    </script>
+</body>
+</html>
