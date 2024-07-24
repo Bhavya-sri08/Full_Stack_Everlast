@@ -1,1 +1,1 @@
-# Full_Stack_Everlast
+# Full_Stack_Everlast shopping website
