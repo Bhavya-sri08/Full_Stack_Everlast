@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-form {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            margin-right: 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            background-color: rgb(227,110,130);
+            color: white;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .agreement {
+            font-size: 0.6rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .agreement a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .agreement a:hover {
+            text-decoration: underline;
+        }
+
+        .or-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .or-divider span {
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            margin: 0 1rem;
+        }
+
+        .or-divider span::before {
+            content: 'Or';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 0 10px;
+        }
+
+        .google-login {
+            background-color: #fff;
+            color: #000;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .google-login img {
+            margin-right: 8px;
+        }
+
+        .google-login:hover {
+            background-color: #f2f2f2;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .register-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .login-image img {
+            max-width: 100%;
+            height: 400px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-content">
+            <form action="LoginServlet" method="post" class="login-form">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <input type="text" id="emailOrMobile" name="emailOrMobile" placeholder="Email ID / Mobile Number" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="Password" name="Password" placeholder="Password" required>
+                </div>
+                <button type="submit">Continue</button>
+                <div class="agreement">
+                    <p>By continuing, you agree to everLast <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+                </div>
+                <div class="or-divider">
+                    <span>Or</span>
+                </div>
+                <button type="button" class="google-login">
+                    <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google Logo"> Continue with Google
+                </button>
+                <p class="register-link">Don't have an account? <a href="signup.html">Register here</a></p>
+            </form>
+            <div class="login-image">
+                <img src="login1.jpg" alt="Login Image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

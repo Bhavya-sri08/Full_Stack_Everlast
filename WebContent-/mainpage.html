@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINNI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="head1">
+            <a href="help.html">Help</a> | 
+            <a href="currency.html">Currency-INR</a>  |
+            <a href="gifts.html">Corporate Gifts</a>  |
+            <a href="track.html">Track Order</a> 
+        </div>
+        <div class="header-main">
+            <div class="logo"></div>
+            <div class="nav_search">
+                <input placeholder="Search for gifts" class="search_input">
+                <i class="fa-solid fa-magnifying-glass search_icon"></i>
+            </div>
+            <div id="delivery-location" class="nav_address border">
+                <div class="add_icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add_sec">Delivery Location</p>
+                </div>
+            </div>
+            <div class="header-icons">
+                <a id="login-icon"><i class="fa-solid fa-person-walking-arrow-right"></i></a>
+                <a href="wishlist.html"><i class="fa-regular fa-heart"></i></a>
+                <a href="cart_1.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Delivery Location Modal -->
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please enter your delivery location:</p>
+            <input type="text" id="locationInput" placeholder="Enter location">
+            <button id="saveLocation">Save</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="loginButton">Login</button>
+            </div>
+            <div class="switch-modal">
+                Don't have an account? <a id="showSignUp">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign-Up Modal -->
+    <div id="signUpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <div class="form-group">
+                <label for="signUpEmail">Email:</label>
+                <input type="email" id="signUpEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="signUpPassword">Password:</label>
+                <input type="password" id="signUpPassword" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="signUpButton">Sign Up</button>
+            </div>
+            <div class="switch-modal">
+                Already have an account? <a id="showLogin">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Delivery Location Modal
+        var locationModal = document.getElementById("locationModal");
+        var locationBtn = document.getElementById("delivery-location");
+        var closeLocationModal = locationModal.getElementsByClassName("close")[0];
+        var saveLocationBtn = document.getElementById("saveLocation");
+        var locationInput = document.getElementById("locationInput");
+        var addSec = document.querySelector(".add_sec");
+
+        locationBtn.addEventListener("click", function() {
+            locationModal.style.display = "block";
+        });
+
+        closeLocationModal.addEventListener("click", function() {
+            locationModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == locationModal) {
+                locationModal.style.display = "none";
+            }
+        });
+
+        saveLocationBtn.addEventListener("click", function() {
+            var location = locationInput.value;
+            if (location) {
+                addSec.textContent = location;
+                locationModal.style.display = "none";
+            }
+        });
+
+        // Login and Sign-Up Modals
+        var loginModal = document.getElementById("loginModal");
+        var signUpModal = document.getElementById("signUpModal");
+        var loginIcon = document.getElementById("login-icon");
+        var closeLoginModal = loginModal.getElementsByClassName("close")[0];
+        var closeSignUpModal = signUpModal.getElementsByClassName("close")[0];
+        var showSignUpLink = document.getElementById("showSignUp");
+        var showLoginLink = document.getElementById("showLogin");
+
+        loginIcon.addEventListener("click", function() {
+            loginModal.style.display = "block";
+        });
+
+        closeLoginModal.addEventListener("click", function() {
+            loginModal.style.display = "none";
+        });
+
+        closeSignUpModal.addEventListener("click", function() {
+            signUpModal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == signUpModal) {
+                signUpModal.style.display = "none";
+            }
+        });
+
+        showSignUpLink.addEventListener("click", function() {
+            loginModal.style.display = "none";
+            signUpModal.style.display = "block";
+        });
+
+        showLoginLink.addEventListener("click", function() {
+            signUpModal.style.display = "none";
+            loginModal.style.display = "block";
+        });
+    </script>
+        <div class="navbar1">
+            <div class="delivery border">
+                <div class="logo1"></div>
+            </div>
+            <div class="home">
+                <div class="home border">
+                    <p>EXPRESS</p>
+                </div>
+            </div>
+            <div class="imported">
+                <div class="imported border">
+                    <p>CAKES</p>
+                </div>
+            </div>
+            <div class="webseries">
+                <div class="webseries border">
+                    <p>FLOWERS</p>
+                </div>
+            </div>
+            <div class="movies">
+                <div class="movies border">
+                    <p>PLANTS</p>
+                </div>
+            </div>
+            <div class="romance">
+                <div class="romance border">
+                    <p>GIFTS</p>
+                </div>
+            </div>
+            <div class="comedy">
+                <div class="comedy border">
+                    <p>PERSONALIZED GIFTS</p>
+                </div>
+            </div>
+            <div class="chocolates">
+                <div class="chocolates border">
+                    <p>CHOCOLATES</p>
+                </div>
+            </div>
+            <div class="combos">
+                <div class="combos border">
+                    <p>COMBOS</p>
+                </div>
+            </div>
+            <div class="birthday">
+                <div class="birthday border">
+                    <p>BIRTHDAY</p>
+                </div>
+            </div>
+            <div class="anniversary">
+                <div class="anniversary border">
+                    <!-- <p>ANNIVERSARY</p> -->
+                    <div class="dropdown">
+                        <a href="#">ANNIVERSARY</a>
+                        <div class="dropdown-content">
+                            <a href="#">All Anniversary Gifts</a>
+                            <a href="#">Best Seller Anniversary</a>
+                            <a href="anniversary_photo cake.html">Anniversary Photo Cake</a>
+                            <a href="same_day_delivery.html">Same Day Delivery</a>
+                            <a href="#">Balloon Decorations</a>
+                            <a href="#">Anniversary New Arrival</a>
+                            <a href="#">Romantic & Couple Gifts</a
+                            <a href="#">Anniversary Cakes</a>
+                            <a href="#">Anniversary Flowers</a>
+                            <a href="#">Anniversary Combos</a>
+                            <a href="#">Personalised Anniversary Gifts</a>
+                            <a href="#">First Anniversary Cakes</a>
+                            <a href="#">25th Anniversary Cakes</a>
+                            <a href="#"> Anniversary Chocolates</a>
+                            <a href="#">Wife</a>
+                            <a href="#">Husband</a>
+                            <a href="#">Parents</a>
+                            <a href="#">Bhaiya Bhabhi</a>
+                            <a href="#">Didi Jiju</a>
+                            <a href="#">Grand Parents</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="occasions">
+                <div class="occasions border">
+                    <p>OCCASIONS</p>
+                </div>
+            </div>
+            <div class="gif-container">
+                <img src="delivery.gif" alt="delivery">
+            </div>
+
+        </div>
+    </header>
+    
+    <div class="slider"></div>
+    <div class="image-container">
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/cake.jpg" alt="Example Image 1">
+                </div>
+                <div class="side back">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/cake.jpg" alt="Example Image 1 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Cake</div>
+            </h3>
+        </div>
+    
+        <!-- <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="combos.webp" alt="Example Image 2">
+                </div>
+                <div class="side back">
+                    <img src="combos.webp" alt="Example Image 2 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Combos</div>
+        </h3>
+        </div>
+    
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="chocolates.webp" alt="Example Image 3">
+                </div>
+                <div class="side back">
+                    <img src="chocolates.webp" alt="Example Image 3 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Chocolates</div>
+            </h3>
+        </div>  -->
+    
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/flowers.jpg" alt="Example Image 4">
+                </div>
+                <div class="side back">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/flowers.jpg" alt="Example Image 4 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Flowers</div>
+            </h3>
+        </div>
+    
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/gifts.jpg" alt="Example Image 5">
+                </div>
+                <div class="side back">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/gifts.jpg" alt="Example Image 5 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Gifts</div>
+        </h3>
+        </div>
+    
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/personalised.jpg" alt="Example Image 6">
+                </div>
+                <div class="side back">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/personalised.jpg" alt="Example Image 6 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Personalised</div>
+            </h3>
+        </div>
+    
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/plants.jpg" alt="Example Image 7">
+                </div>
+                <div class="side back">
+                    <img src="https://assets.winni.in/groot/2023/12/18/desktop/plants.jpg" alt="Example Image 7 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Plants</div>
+            </h3>
+        </div>
+        <div class="image-wrapper">
+            <div class="image"><br></br><br></br>
+                <div class="side front">
+                    <img src="https://assets.winni.in/groot/2024/01/22/desktop/desktop-crystal-gift.jpg" alt="Example Image 7">
+                </div>
+                <div class="side back">
+                    <img src="https://assets.winni.in/groot/2024/01/22/desktop/desktop-crystal-gift.jpg" alt="Example Image 7 Back">
+                </div>
+            </div><br></br><br></br>
+            <h3>
+            <div class="label">Crystal Gifts</div>
+            </h3>
+        </div>
+    
+    </div>
+    
+</body>
+</html>

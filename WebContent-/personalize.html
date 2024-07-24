@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize Your Gift</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            color: #343a40;
+        }
+        .header {
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #343a40;
+        }
+        .header img {
+            height: 40px;
+        }
+        .header .progress-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 50%;
+            position: relative;
+        }
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, #ccc, #ccc 4px, transparent 4px, transparent 8px);
+            z-index: 0;
+        }
+        .progress-step {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .circle {
+            background-color: #fff;
+            color: #343a40;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            padding: 5px;
+            width: 13px;
+            height: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        .progress-step.active .circle {
+            border-color: rgb(230,110,130);
+            color: rgb(230,110,130);
+        }
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+            margin-top: 10px;
+        }
+        .progress-label {
+            text-align: center;
+            font-size: 12px;
+            color: #343a40;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .personalize-form {
+            flex: 2;
+            margin-right: 20px;
+        }
+        .order-summary {
+            flex: 1;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: black;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight:bold;
+            font-size: 13px;
+            color: gray;
+        }
+        input[type="text"], input[type="datetime-local"], input[type="tel"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #343a40;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .btn.continue-payment {
+            background-color: green;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .occasion-options {
+            display: flex;
+            justify-content: space-between;
+        }
+        .occasion-options input {
+            display: none;
+        }
+        .occasion-options label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            color: #343a40;
+        }
+        .occasion-options input:checked + label {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+        .sender-info h3 {
+            font-size: 18px;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        .sender-info p {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="logo.png" alt="Logo">
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-step active">
+                    <div class="circle">1</div>
+                </div>
+                <div class="progress-step active">
+                    <div class="circle">2</div>
+                </div>
+                <div class="progress-step active">
+                    <div class="circle">3</div>
+                </div>
+                <div class="progress-step">
+                    <div class="circle">4</div>
+                </div>
+            </div>
+            <div class="progress-labels">
+                <div class="progress-label">Cart</div>
+                <div class="progress-label">Address</div>
+                <div class="progress-label">Personalize</div>
+                <div class="progress-label">Payment</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="personalize-form">
+            <h2>Personalize Your Gift</h2>
+            <form id="personalizeForm">
+                <div class="form-group">
+                    <label for="deliveryDate">Delivery Date and Time</label>
+                    <input type="datetime-local" id="deliveryDate" name="deliveryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="occasion">Occasion</label>
+                    <div class="occasion-options">
+                        <input type="radio" id="birthday" name="occasion" value="birthday" onchange="toggleDropdown(false)">
+                        <label for="birthday">Birthday</label>
+                        <input type="radio" id="anniversary" name="occasion" value="anniversary" onchange="toggleDropdown(false)">
+                        <label for="anniversary">Anniversary</label>
+                        <input type="radio" id="other" name="occasion" value="other" onchange="toggleDropdown(true)">
+                        <label for="other">Other</label>
+                    </div>
+                    <select id="occasionDropdown" name="occasionDropdown" style="display:none;">
+                        <option value="occasion">Occasion</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="sorry">I am sorry</option>
+                        <option value="getWell">Get well soon</option>
+                        <option value="justLikeThat">Just like that</option>
+                        <option value="congratulations">Congratulations</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="newBorn">New born</option>
+                        <option value="cheerUp">Cheer up</option>
+                        <option value="appreciation">Appreciation</option>
+                        <option value="thankYou">Thank You</option>
+                        <option value="other">Other</option>
+                        <option value="loveAffection">Love and Affection</option>
+                        <option value="navaratri">Navaratri</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="personalMessage">Personal Message</label>
+                    <textarea id="personalMessage" name="personalMessage" rows="4" required></textarea>
+                </div>
+                <div class="form-group sender-info">
+                    <h3>Sender Information</h3>
+                    <p>Order related communication will also be sent on these details.</p>
+                    <label for="senderName">Name</label>
+                    <input type="text" id="senderName" name="senderName" value="Sender Name" required>
+
+                    <label for="senderPhone">Phone Number</label>
+                    <input type="tel" id="senderPhone" name="senderPhone" value="Phone Number" required>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="hideSenderInfo" name="hideSenderInfo">
+                        <label for="hideSenderInfo">Hide Sender Information</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn continue-payment">Continue to Payment</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Price Details (1 Item)</p>
+            <p>MRP Total: ₹ 729</p>
+            <p>MRP Discount: - ₹ 0</p>
+            <p>Delivery Charge: FREE</p>
+            <p>Convenience Charge: ₹ 10</p>
+            <hr>
+            <p>Total Amount: ₹ 739</p>
+            <a href="payment.html" class="btn continue-payment">Continue to Payment</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(show) {
+            const dropdown = document.getElementById('occasionDropdown');
+            dropdown.style.display = show ? 'block' : 'none';
+        }
+
+        document.getElementById('personalizeForm').addEventListener('submit', function(event) {
+            const senderName = document.getElementById('senderName').value.trim();
+            const senderPhone = document.getElementById('senderPhone').value.trim();
+            const phonePattern = /^[0-9]{10}$/;
+
+            if (!senderName) {
+                alert('Please enter a valid name.');
+                event.preventDefault();
+                return;
+            }
+
+            if (!senderPhone || !phonePattern.test(senderPhone)) {
+                alert('Please enter a valid phone number.');
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

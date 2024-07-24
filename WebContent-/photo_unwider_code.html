@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Cakes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        main {
+            padding: 2em;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2em;
+            flex-wrap: wrap;
+            background-color: white;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-group {
+            margin: 1em 0;
+        }
+
+        .filter-group label {
+            margin-right: 0.5em;
+        }
+
+        #cakes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 2em;
+        }
+
+        .cake {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cake img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cake h2 {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+
+        .cake p {
+            font-size: 1em;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .cake .price {
+            font-size: 1.2em;
+            color: #333;
+            margin: 0.5em 0;
+        }
+
+        .cake:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anniversary Cakes</h1>
+    </header>
+    <main>
+        <div id="filters">
+            <div class="filter-group">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="name">Name</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="price-filter">Filter by price:</label>
+                <select id="price-filter">
+                    <option value="all">All</option>
+                    <option value="0-500">Under 500</option>
+                    <option value="500-800">500 - 800</option>
+                    <option value="900-1100">Above 900</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="delivery-date">Delivery date:</label>
+                <input type="date" id="delivery-date">
+            </div>
+        </div>
+        <section id="cakes">
+            <!-- Cake items will be dynamically inserted here -->
+        </section>
+    </main>
+    <script>
+        const cakes = [
+            {
+                name: "Chocolate Truffle Cake",
+                image: "cake1.jpeg",
+                description: "Rich and creamy chocolate truffle cake perfect for anniversaries.",
+                price: 500,
+                link: "https://example.com/chocolate_truffle"
+            },
+            {
+                name: "Red Velvet Cake",
+                image: "cake2.jpeg",
+                description: "A classic red velvet cake with cream cheese frosting.",
+                price: 650,
+                link: "https://example.com/red_velvet"
+            },
+            {
+                name: "Photo cake",
+                image: "cake8.jpeg",
+                description: "Say Cheers To Togetherness Photo Cake",
+                price: 950,
+                link: "https://example.com/vanilla_sponge"
+            },
+            {
+                name: "Black Forest Cake",
+                image: "cake4.jpeg",
+                description: "Delicious black forest cake with cherries and whipped cream.",
+                price: 1100,
+                link: "https://example.com/black_forest"
+            },
+            {
+                name: "customized Photo Cake",
+                image: "cake5.jpeg",
+                description: "give a customized cake as a gift",
+                price: 1000,
+                link: "https://example.com/pineapple_cake"
+            },
+            {
+                name: "Strawberry Cake",
+                image: "cake6.jpeg",
+                description: "Little hearts strawberry cake.",
+                price: 350,
+                link: "https://example.com/strawberry_cake"
+            },
+            {
+                name: "White Forest cake",
+                image: "cake7.jpeg",
+                description: "Smooth and creamy White forest cake with crunchy pralines.",
+                price: 780,
+                link: "https://example.com/butterscotch_cake"
+            },
+            {
+                name: "Vanilla Sponge Cake",
+                image: "cake3.jpeg",
+                description: "Light and fluffy vanilla sponge cake with a hint of lemon.",
+                price: 659,
+                link: "https://example.com/fruit_cake"
+            },
+         
+        ];
+
+        const cakesContainer = document.getElementById('cakes');
+        const sortSelect = document.getElementById('sort');
+        const priceFilterSelect = document.getElementById('price-filter');
+        const deliveryDateInput = document.getElementById('delivery-date');
+
+        function displayCakes(filteredCakes) {
+            cakesContainer.innerHTML = '';
+            filteredCakes.forEach(cake => {
+                const cakeElement = document.createElement('a');
+                cakeElement.classList.add('cake');
+                cakeElement.href = cake.link;
+                cakeElement.target = "_blank";
+                
+                cakeElement.innerHTML = `
+                    <img src="${cake.image}" alt="${cake.name}">
+                    <h2>${cake.name}</h2>
+                    <p>${cake.description}</p>
+                    <div class="price">₹${cake.price.toFixed(2)}</div>
+                `;
+
+                cakesContainer.appendChild(cakeElement);
+            });
+        }
+
+        function sortCakes(cakes, criteria) {
+            return cakes.slice().sort((a, b) => {
+                if (criteria === 'name') {
+                    return a.name.localeCompare(b.name);
+                } else if (criteria === 'price-asc') {
+                    return a.price - b.price;
+                } else if (criteria === 'price-desc') {
+                    return b.price - a.price;
+                }
+                return 0;
+            });
+        }
+
+        function filterCakes(cakes, priceRange) {
+            if (priceRange === '0-20') {
+                return cakes.filter(cake => cake.price < 20);
+            } else if (priceRange === '20-30') {
+                return cakes.filter(cake => cake.price >= 20 && cake.price <= 30);
+            } else if (priceRange === '30-40') {
+                return cakes.filter(cake => cake.price > 30);
+            }
+            return cakes;
+        }
+
+        function updateCakes() {
+            const sortCriteria = sortSelect.value;
+            const priceFilter = priceFilterSelect.value;
+
+            let sortedCakes = sortCakes(cakes, sortCriteria);
+            let filteredCakes = filterCakes(sortedCakes, priceFilter);
+
+            displayCakes(filteredCakes);
+        }
+
+        sortSelect.addEventListener('change', updateCakes);
+        priceFilterSelect.addEventListener('change', updateCakes);
+        deliveryDateInput.addEventListener('change', updateCakes);
+
+        // Initial display
+        displayCakes(cakes);
+    </script>
+</body>
+</html>

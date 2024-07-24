@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestion Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .suggestion-box {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: white;
+            border: 2px solid #000;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            overflow: calc(100%-30px);
+            height:calc(100%-20px);
+            box-sizing:border-box;
+        }
+        #openButton {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .action-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .action-button.correct {
+            background-color: green;
+            color: white;
+            position:fixed;
+            display:block;
+            margin: 20px auto 0 auto;
+            text-align:center;
+            bottom:10px;
+            left:50%;
+            transform: translateX(-50%);
+        }
+        .action-button.wrong {
+            background-color: red;
+            color: white;
+            position: absolute;
+            top:10px;
+            right:10px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="openButton">Add to Cart</button>
+<div id="suggestionBox" class="suggestion-box">
+    <button class="action-button wrong" id="wrongButton">X</button>
+    <h2>Suggestions</h2>
+    <p>Your suggestions go here...</p>
+    <div class="suggestion-images">
+        <img src="C:\Fullstack\Anniversary\OIP.jpeg" alt="suggestion 1">
+        <img src="C:\Fullstack\Anniversary\OIP.jpeg" alt="suggestion 1">
+        <img src="C:\Fullstack\Anniversary\OIP.jpeg" alt="suggestion 1">
+        <img src="C:\Fullstack\Anniversary\OIP.jpeg" alt="suggestion 1">
+    </div>
+    <button class="action-button correct" id="correctButton">Continue Checkout without addons</button>
+</div>
+
+<script>
+    document.getElementById('openButton').addEventListener('click', function() {
+        const suggestionBox = document.getElementById('suggestionBox');
+        const width = window.innerWidth - 30;
+        const height = window.innerHeight - 20;
+        
+        suggestionBox.style.width = width + 'px';
+        suggestionBox.style.height = height + 'px';
+        suggestionBox.style.display = 'block';
+    });
+
+    document.getElementById('correctButton').addEventListener('click', function() {
+        window.location.href = 'cart_1.html'; // Change to your actual page2 URL
+    });
+
+    document.getElementById('wrongButton').addEventListener('click', function() {
+        window.location.href = 'cart_1.html'; // Change to your actual page3 URL
+    });
+</script>
+
+</body>
+</html>
